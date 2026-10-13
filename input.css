@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+@theme {
+  --color-accent: #e66102;
+  --color-accent-soft: #f5821f;
+  --color-accent-dark: #b84d02;
+  --color-gold: #ffb454;
+  --color-ink: #2a2118;
+  --color-muted: #8a7a68;
+  --color-bg: #faf6f1;
+  --color-line: #efe6da;
+
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-serif: "Inter", system-ui, -apple-system, sans-serif;
+
+  --animate-fade-in: fade-in 0.2s ease both;
+  --animate-slide-up: slide-up 0.28s ease both;
+  --animate-fade-in-up: fade-in-up 0.6s ease both;
+  --animate-item-in: item-in 0.4s ease both;
+  --animate-logo-pop: logo-pop 0.7s cubic-bezier(0.2, 0.9, 0.3, 1.3) both;
+  --animate-hero-zoom: hero-zoom 20s ease-in-out infinite alternate;
+  --animate-badge-pulse: badge-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slide-up { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes fade-in-up { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes item-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes logo-pop { from { opacity: 0; transform: scale(0.6); } to { opacity: 1; transform: scale(1); } }
+@keyframes hero-zoom { from { transform: scale(1.05); } to { transform: scale(1.14); } }
+@keyframes badge-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.12); } }
+
+body {
+  background-color: var(--color-bg);
+  background-image:
+    radial-gradient(circle at 10% 6%, rgba(230, 97, 2, 0.07), transparent 36%),
+    radial-gradient(circle at 90% 94%, rgba(255, 180, 84, 0.1), transparent 40%);
+  background-attachment: fixed;
+  padding-bottom: 78px;
+}
+body.has-cart { padding-bottom: 154px; }
+
+[hidden] { display: none !important; }
+
+/* Sepet paneli kaydırma */
+.cart-panel { transform: translateX(100%); transition: transform 0.3s ease; }
+.cart-panel.open { transform: translateX(0); }
+
+/* Toast göster/gizle */
+.toast { transform: translateX(-50%) translateY(20px); opacity: 0; }
+.toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+/* Açılınca ikon/chevron */
+.category.open .category-chevron { transform: rotate(180deg); }
+.category.open .category-icon { transform: scale(1.1) rotate(-5deg); }
+
+/* Aktif galeri noktası */
+.gallery-dot.active { background: #fff; }
+
+/* Masaüstü düzen */
+@media (min-width: 720px) {
+  body { padding-bottom: 96px; }
+  body.has-cart { padding-bottom: 170px; }
+  .cart-bar { left: auto; right: 24px; bottom: 96px; width: 300px; }
+  .bottom-nav {
+    left: 50%; right: auto; transform: translateX(-50%);
+    bottom: 16px; width: 100%; max-width: 440px;
+    border-radius: 22px;
+    border: 1px solid var(--color-line);
+    border-top: 1px solid var(--color-line);
+    padding-bottom: 6px;
+  }
+}
+
+/* Accordion */
+.category-panel { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+.category.open .category-panel { max-height: 4000px; }
+.category.open .product-item { animation: item-in 0.4s ease both; }
+.category.open .product-item:nth-child(1) { animation-delay: 0.02s; }
+.category.open .product-item:nth-child(2) { animation-delay: 0.06s; }
+.category.open .product-item:nth-child(3) { animation-delay: 0.10s; }
+.category.open .product-item:nth-child(4) { animation-delay: 0.14s; }
+.category.open .product-item:nth-child(5) { animation-delay: 0.18s; }
+.category.open .product-item:nth-child(6) { animation-delay: 0.22s; }
+.category.open .product-item:nth-child(7) { animation-delay: 0.26s; }
+
+/* Category renk vurgusu (--cat-color JS ile set ediliyor) */
+.category { border-left: 4px solid var(--cat-color, var(--color-accent)); }
+.category-icon {
+  color: var(--cat-color, var(--color-accent));
+  background: color-mix(in srgb, var(--cat-color, var(--color-accent)) 15%, #fff);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--cat-color, var(--color-accent)) 18%, transparent);
+}
+.category-chevron { color: var(--cat-color, var(--color-accent)); }
+.tag-chip {
+  background: color-mix(in srgb, var(--cat-color, var(--color-accent)) 12%, #fff);
+  color: color-mix(in srgb, var(--cat-color, var(--color-accent)) 72%, #000);
+}
+
+/* Alt menü çentik payı */
+.bottom-nav { padding-bottom: calc(6px + env(safe-area-inset-bottom, 0px)); }
+
+/* Erişilebilirlik */
+::selection { background: rgba(230, 97, 2, 0.22); }
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+.product-item:focus-visible,
+.category-header:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+.category-header:focus-visible { outline-offset: -2px; }
