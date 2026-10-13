@@ -48,8 +48,6 @@
   let currentQty = 1;
   let currentSlide = 0;
   let searchTerm = "";
-  let activeFilters = new Set();
-
   /* ---------- i18n yardımcıları ---------- */
   function t(key) {
     return (UI[LANG] && UI[LANG][key]) || (UI.tr && UI.tr[key]) || key;
@@ -103,10 +101,6 @@
       const hay = (itemName(item) + " " + itemDesc(item)).toLowerCase();
       if (!hay.includes(q)) return false;
     }
-    if (activeFilters.size) {
-      const trTags = item.tags || [];
-      if (!trTags.some((tag) => activeFilters.has(tag))) return false;
-    }
     return true;
   }
 
@@ -134,49 +128,8 @@
     `;
   }
 
-  /* ---------- Filtre çipleri ---------- */
-  const FILTERABLE_TAGS = ["Acılı", "Acısız", "Vejetaryen", "Etli", "Sıcak", "Soğuk", "Fıstıklı", "Taze"];
-
-  function renderFilterChips() {
-    const el = document.getElementById("filterChips");
-    if (!el) return;
-    el.innerHTML = "";
-
-    const allChip = document.createElement("button");
-    allChip.className =
-      "rounded-full px-3 py-1.5 text-[12px] font-semibold transition-colors " +
-      (activeFilters.size === 0 ? "bg-accent text-white" : "border border-line bg-white text-muted");
-    allChip.textContent = t("all");
-    allChip.addEventListener("click", () => {
-      activeFilters.clear();
-      renderFilterChips();
-      renderMenu();
-    });
-    el.appendChild(allChip);
-
-    const present = new Set();
-    MENU.forEach((cat) => cat.items.forEach((item) => (item.tags || []).forEach((tag) => present.add(tag))));
-
-    FILTERABLE_TAGS.filter((tag) => present.has(tag)).forEach((trTag) => {
-      const label = LANG === "en" ? TAG_EN[trTag] || trTag : trTag;
-      const b = document.createElement("button");
-      const active = activeFilters.has(trTag);
-      b.className =
-        "rounded-full px-3 py-1.5 text-[12px] font-semibold transition-colors " +
-        (active ? "bg-accent text-white" : "border border-line bg-white text-muted");
-      b.textContent = label;
-      b.addEventListener("click", () => {
-        if (active) activeFilters.delete(trTag);
-        else activeFilters.add(trTag);
-        renderFilterChips();
-        renderMenu();
-      });
-      el.appendChild(b);
-    });
-  }
-
   /* ---------- Menüyü oluştur ---------- */
-  const filteringActive = () => searchTerm.trim() !== "" || activeFilters.size > 0;
+  const filteringActive = () => searchTerm.trim() !== "";
 
   function renderMenu() {
     menuEl.innerHTML = "";
@@ -529,7 +482,6 @@
     if (langToggle) langToggle.textContent = LANG === "tr" ? "EN" : "TR";
     if (installBtn) installBtn.textContent = "📲 " + t("install");
     renderCampaign();
-    renderFilterChips();
     renderMenu();
     renderCart();
   }
