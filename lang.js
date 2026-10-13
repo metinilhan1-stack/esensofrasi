@@ -32,6 +32,7 @@ const UI = {
     filters: "Filtreler",
     all: "Tümü",
     itemNote: "Bu ürün için not (opsiyonel)",
+    install: "Uygulamayı Yükle",
   },
   en: {
     menu: "Our Menu",
@@ -62,6 +63,7 @@ const UI = {
     filters: "Filters",
     all: "All",
     itemNote: "Note for this item (optional)",
+    install: "Install App",
   },
 };
 

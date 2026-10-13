@@ -35,6 +35,7 @@
   const toast = document.getElementById("toast");
   const langToggle = document.getElementById("langToggle");
   const searchInput = document.getElementById("searchInput");
+  const installBtn = document.getElementById("installBtn");
 
   const productById = new Map();
   MENU.forEach((cat) =>
@@ -526,6 +527,7 @@
       el.placeholder = t(el.dataset.i18nPh);
     });
     if (langToggle) langToggle.textContent = LANG === "tr" ? "🌐 EN" : "🌐 TR";
+    if (installBtn) installBtn.textContent = "📲 " + t("install");
     renderCampaign();
     renderFilterChips();
     renderMenu();
@@ -557,6 +559,27 @@
 
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("sw.js").catch(() => {});
+  }
+
+  let deferredPrompt = null;
+  if (installBtn) {
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      installBtn.style.display = "flex";
+      installBtn.textContent = "📲 " + t("install");
+    });
+    installBtn.addEventListener("click", async () => {
+      if (!deferredPrompt) return;
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
+      deferredPrompt = null;
+      installBtn.style.display = "none";
+    });
+    window.addEventListener("appinstalled", () => {
+      installBtn.style.display = "none";
+      deferredPrompt = null;
+    });
   }
 
   const siteHeader = document.getElementById("siteHeader");
