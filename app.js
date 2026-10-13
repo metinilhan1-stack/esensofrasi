@@ -526,7 +526,7 @@
     document.querySelectorAll("[data-i18n-ph]").forEach((el) => {
       el.placeholder = t(el.dataset.i18nPh);
     });
-    if (langToggle) langToggle.textContent = LANG === "tr" ? "🌐 EN" : "🌐 TR";
+    if (langToggle) langToggle.textContent = LANG === "tr" ? "EN" : "TR";
     if (installBtn) installBtn.textContent = "📲 " + t("install");
     renderCampaign();
     renderFilterChips();
