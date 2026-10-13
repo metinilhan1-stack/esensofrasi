@@ -6,7 +6,8 @@
   const KEY = "esensofrasi-admin-menu";
   const list = document.getElementById("list");
   const addCatBtn = document.getElementById("addCatBtn");
-  const exportBtn = document.getElementById("exportBtn");
+  const tokenBtn = document.getElementById("tokenBtn");
+  const publishBtn = document.getElementById("publishBtn");
   const resetBtn = document.getElementById("resetBtn");
   const fileInput = document.getElementById("fileInput");
   const toastEl = document.getElementById("toast");
@@ -208,16 +209,73 @@ const formatPrice = (price) =>
 `;
   }
 
-  exportBtn.addEventListener("click", () => {
-    const out = buildDataJs();
-    const blob = new Blob([out], { type: "text/javascript" });
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = "data.js";
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    toast("data.js indirildi");
+  /* GitHub ile yayınlama */
+  const GH = { owner: "metinilhan1-stack", repo: "esensofrasi", branch: "main" };
+
+  function getToken() { return localStorage.getItem("gh-token") || ""; }
+
+  tokenBtn.addEventListener("click", () => {
+    const t = prompt(
+      "GitHub Personal Access Token girin:\n\n" +
+      "github.com → Settings → Developer settings → Personal access tokens\n" +
+      "(Fine-grained: repo için 'Contents: Read and write').\n" +
+      "Token yalnızca bu cihazda (localStorage) saklanır."
+    );
+    if (t && t.trim()) {
+      localStorage.setItem("gh-token", t.trim());
+      toast("Token kaydedildi ✓");
+    }
+  });
+
+  function b64utf8(s) {
+    return btoa(unescape(encodeURIComponent(s)));
+  }
+
+  async function publish() {
+    const token = getToken();
+    if (!token) {
+      toast("Önce 🔑 Token girin");
+      return;
+    }
+    publishBtn.disabled = true;
+    publishBtn.textContent = "Yayınlanıyor...";
+    const content = buildDataJs();
+    const path = "data.js";
+    try {
+      const res = await fetch(`https://api.github.com/repos/${GH.owner}/${GH.repo}/contents/${path}`, {
+        headers: { Authorization: `Bearer ${token}`, Accept: "application/vnd.github+json" },
+      });
+      let sha = null;
+      if (res.ok) { const j = await res.json(); sha = j.sha; }
+      else if (res.status !== 404) { toast("GitHub okuma hatası: " + res.status); return; }
+
+      const put = await fetch(`https://api.github.com/repos/${GH.owner}/${GH.repo}/contents/${path}`, {
+        method: "PUT",
+        headers: { Authorization: `Bearer ${token}`, Accept: "application/vnd.github+json", "Content-Type": "application/json" },
+        body: JSON.stringify({
+          message: "Menü güncellendi (admin panel)",
+          content: b64utf8(content),
+          branch: GH.branch,
+          ...(sha ? { sha } : {}),
+        }),
+      });
+      if (put.ok) {
+        toast("Yayınlandı ✓ (site ~1 dk içinde güncellenir)");
+      } else {
+        const j = await put.json().catch(() => ({}));
+        toast("Hata: " + (j.message || put.status));
+      }
+    } catch (e) {
+      toast("Hata: " + e.message);
+    } finally {
+      publishBtn.disabled = false;
+      publishBtn.textContent = "🚀 Kaydet & Yayınla";
+    }
+  }
+
+  publishBtn.addEventListener("click", () => {
+    save();
+    publish();
   });
 
   resetBtn.addEventListener("click", () => {
