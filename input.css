@@ -57,6 +57,29 @@ body.has-cart { padding-bottom: 154px; }
 /* Aktif galeri noktası */
 .gallery-dot.active { background: #fff; }
 
+/* Sabit/küçülen banner */
+.site-header { position: sticky; top: 0; z-index: 30; }
+.hero-overlay {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.72) 100%);
+}
+.hero-bg, .hero-overlay { transition: opacity 0.3s ease; }
+.header-content { transition: padding 0.3s ease; }
+.hero-brand {
+  max-height: 220px;
+  overflow: hidden;
+  transition: opacity 0.25s ease, max-height 0.35s ease;
+}
+.hero-menu-heading { transition: margin 0.3s ease; }
+.site-header.is-scrolled {
+  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-dark));
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.3);
+}
+.site-header.is-scrolled .hero-bg,
+.site-header.is-scrolled .hero-overlay { opacity: 0; }
+.site-header.is-scrolled .header-content { padding-top: 12px; padding-bottom: 12px; }
+.site-header.is-scrolled .hero-brand { opacity: 0; max-height: 0; }
+.site-header.is-scrolled .hero-menu-heading { margin-top: 0; }
+
 /* Masaüstü düzen */
 @media (min-width: 720px) {
   body { padding-bottom: 96px; }

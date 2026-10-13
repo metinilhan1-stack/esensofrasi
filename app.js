@@ -404,6 +404,15 @@
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+  const siteHeader = document.getElementById("siteHeader");
+  function onScroll() {
+    if (!siteHeader) return;
+    if (window.scrollY > 40) siteHeader.classList.add("is-scrolled");
+    else siteHeader.classList.remove("is-scrolled");
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
   renderMenu();
   renderCart();
 })();
