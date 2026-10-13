@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.esensofrasi.com/sitemap.xml
+Sitemap: https://metinilhan1-stack.github.io/esensofrasi/sitemap.xml
