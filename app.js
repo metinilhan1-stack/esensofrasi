@@ -134,7 +134,8 @@
   function renderMenu() {
     menuEl.innerHTML = "";
     MENU.forEach((cat) => {
-      const visibleItems = cat.items.filter(matchesFilters);
+      const availableItems = cat.items.filter((i) => i.available !== false);
+      const visibleItems = availableItems.filter(matchesFilters);
       if (visibleItems.length === 0) return;
 
       const section = document.createElement("section");
@@ -152,7 +153,7 @@
         <span class="category-info min-w-0 flex-1">
           <span class="category-name block font-serif text-[18px] font-bold">${catName(cat)}</span>
           <span class="category-desc mt-0.5 block text-[12.5px] leading-snug text-muted">${catDesc(cat)}</span>
-          <span class="category-count mt-1.5 inline-block rounded-full bg-[#f6efe6] px-2.5 py-0.5 text-[11px] font-semibold tracking-wide text-muted">${cat.items.length} ${t("items")}</span>
+          <span class="category-count mt-1.5 inline-block rounded-full bg-[#f6efe6] px-2.5 py-0.5 text-[11px] font-semibold tracking-wide text-muted">${availableItems.length} ${t("items")}</span>
         </span>
         <span class="category-chevron shrink-0 transition-transform duration-300" aria-hidden="true"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
       `;
