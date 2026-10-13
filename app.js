@@ -585,8 +585,12 @@
   const siteHeader = document.getElementById("siteHeader");
   function onScroll() {
     if (!siteHeader) return;
-    if (window.scrollY > 40) siteHeader.classList.add("is-scrolled");
-    else siteHeader.classList.remove("is-scrolled");
+    const y = window.scrollY;
+    if (y > 60 && !siteHeader.classList.contains("is-scrolled")) {
+      siteHeader.classList.add("is-scrolled");
+    } else if (y < 20 && siteHeader.classList.contains("is-scrolled")) {
+      siteHeader.classList.remove("is-scrolled");
+    }
   }
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
