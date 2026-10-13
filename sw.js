@@ -1,9 +1,10 @@
-const CACHE = "esensofrasi-v1";
+const CACHE = "esensofrasi-v2";
 const SHELL = [
   "./",
   "./index.html",
   "./styles.css",
   "./data.js",
+  "./lang.js",
   "./app.js",
   "./manifest.json",
   "./images/icon-192.png",
@@ -22,12 +23,14 @@ self.addEventListener("activate", (e) => {
 });
 
 self.addEventListener("fetch", (e) => {
-  const url = new URL(e.request.url);
-  if (e.request.method !== "GET" || url.origin !== location.origin) return;
+  const req = e.request;
+  const url = new URL(req.url);
+  if (req.method !== "GET" || url.origin !== location.origin) return;
 
-  if (e.request.mode === "navigate") {
+  // HTML sayfaları: ağ öncelikli, çevrimdışı yedek
+  if (req.mode === "navigate") {
     e.respondWith(
-      fetch(e.request)
+      fetch(req)
         .then((res) => {
           const copy = res.clone();
           caches.open(CACHE).then((c) => c.put("./index.html", copy));
@@ -38,17 +41,34 @@ self.addEventListener("fetch", (e) => {
     return;
   }
 
+  // Görseller: önbellek öncelikli (değişmez, çevrimdışı çalışır)
+  if (/\.(png|jpe?g|webp|gif|svg)$/i.test(url.pathname)) {
+    e.respondWith(
+      caches.match(req).then(
+        (cached) =>
+          cached ||
+          fetch(req).then((res) => {
+            if (res.ok) {
+              const copy = res.clone();
+              caches.open(CACHE).then((c) => c.put(req, copy));
+            }
+            return res;
+          })
+      )
+    );
+    return;
+  }
+
+  // JS/CSS/JSON (uygulama kabuğu): ağ öncelikli, çevrimdışı yedek
   e.respondWith(
-    caches.match(e.request).then(
-      (cached) =>
-        cached ||
-        fetch(e.request).then((res) => {
-          if (res.ok) {
-            const copy = res.clone();
-            caches.open(CACHE).then((c) => c.put(e.request, copy));
-          }
-          return res;
-        })
-    )
+    fetch(req)
+      .then((res) => {
+        if (res.ok) {
+          const copy = res.clone();
+          caches.open(CACHE).then((c) => c.put(req, copy));
+        }
+        return res;
+      })
+      .catch(() => caches.match(req))
   );
 });
