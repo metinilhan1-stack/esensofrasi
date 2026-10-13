@@ -214,18 +214,22 @@ const formatPrice = (price) =>
 
   function getToken() { return localStorage.getItem("gh-token") || ""; }
 
-  tokenBtn.addEventListener("click", () => {
+  function askToken() {
     const t = prompt(
-      "GitHub Personal Access Token girin:\n\n" +
+      "GitHub Token girin (bir kez yeter):\n\n" +
       "github.com → Settings → Developer settings → Personal access tokens\n" +
-      "(Fine-grained: repo için 'Contents: Read and write').\n" +
+      "(Fine-grained: 'Contents: Read and write' izni).\n" +
       "Token yalnızca bu cihazda (localStorage) saklanır."
     );
     if (t && t.trim()) {
       localStorage.setItem("gh-token", t.trim());
       toast("Token kaydedildi ✓");
+      return true;
     }
-  });
+    return false;
+  }
+
+  tokenBtn.addEventListener("click", askToken);
 
   function b64utf8(s) {
     return btoa(unescape(encodeURIComponent(s)));
@@ -287,4 +291,11 @@ const formatPrice = (price) =>
   });
 
   render();
+
+  /* İlk açılışta bir kerelik token iste */
+  if (!getToken()) {
+    setTimeout(() => {
+      if (!askToken()) toast("Token girilmedi — yayınlama çalışmaz (🔑 Token ile sonra girebilirsiniz)");
+    }, 500);
+  }
 })();
