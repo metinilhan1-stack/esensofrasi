@@ -4,6 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="theme-color" content="#e66102" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Esen Sofrası" />
+  <link rel="apple-touch-icon" href="images/icon-192.png" />
   <meta name="description" content="Esen Sofrası — Ankara Yenikent Sincan'da kebap, pide, lahmacun ve geleneksel Türk mutfağı. Közde kebap, taş fırın pide. Alo Paket: 0532 525 31 62." />
   <meta name="keywords" content="Esen Sofrası, Yenikent Sincan, Sincan restoran, Yenikent kebap, kebapçı, pide, lahmacun, Ankara Sincan yemek, Türk mutfağı" />
   <meta name="robots" content="index, follow" />
@@ -21,7 +27,7 @@
   <meta name="twitter:title" content="Esen Sofrası | Yenikent Sincan Kebap & Restoran" />
   <meta name="twitter:description" content="Ankara Yenikent Sincan'da közde kebap, taş fırın pide, lahmacun ve geleneksel Türk mutfağı." />
   <meta name="twitter:image" content="https://metinilhan1-stack.github.io/esensofrasi/images/og-image.png" />
-  <link rel="icon" href="images/logo-instagram-100.jpg" />
+  <link rel="icon" href="images/icon-192.png" />
   <title>Esen Sofrası | Yenikent Sincan Kebap & Restoran</title>
   <script type="application/ld+json">
   {
@@ -56,6 +62,7 @@
 <body class="font-sans text-ink antialiased overflow-x-clip">
 
   <header id="siteHeader" class="site-header relative isolate overflow-hidden text-white">
+    <button id="langToggle" class="absolute right-3 top-3 z-20 flex h-8 items-center gap-1 rounded-full border border-white/25 bg-white/15 px-3 text-[12px] font-semibold text-white backdrop-blur transition-colors hover:bg-white/25" aria-label="Dili değiştir">🌐 EN</button>
     <img class="hero-bg absolute inset-0 -z-20 h-full w-full scale-[1.05] object-cover animate-hero-zoom" src="images/banner.png" alt="" aria-hidden="true" />
     <div class="hero-overlay absolute inset-0 -z-10"></div>
     <div class="header-content relative px-5 py-8 text-center animate-fade-in-up">
@@ -69,13 +76,23 @@
 
       <div class="hero-menu-heading mx-auto mt-10 flex max-w-[460px] items-center justify-center gap-4">
         <span class="h-0.5 flex-1 rounded bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.7))]"></span>
-        <h2 class="font-serif text-[24px] font-semibold tracking-wide text-white">Menümüz</h2>
+        <h2 data-i18n="menu" class="font-serif text-[24px] font-semibold tracking-wide text-white">Menümüz</h2>
         <span class="h-0.5 flex-1 rounded bg-[linear-gradient(90deg,rgba(255,255,255,0.7),transparent)]"></span>
       </div>
     </div>
   </header>
 
-  <main id="menu" class="mx-auto max-w-[720px] px-3.5 pb-5 pt-4" aria-live="polite">
+  <div id="campaignBanner"></div>
+
+  <div class="mx-auto max-w-[720px] px-3.5 pt-3">
+    <div class="relative">
+      <svg class="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input id="searchInput" data-i18n-ph="search" type="search" class="w-full rounded-xl border border-line bg-white py-2.5 pl-9 pr-3 text-[14px] focus:border-accent focus:outline-none focus:ring-2 focus:ring-[rgba(230,97,2,0.35)]" />
+    </div>
+    <div id="filterChips" class="mt-3 flex flex-wrap gap-2"></div>
+  </div>
+
+  <main id="menu" class="mx-auto max-w-[720px] px-3.5 pb-5 pt-3" aria-live="polite">
     <!-- Kategoriler JS ile eklenir -->
   </main>
 
@@ -109,48 +126,50 @@
         <p class="mt-3 text-[14.5px] leading-[1.6] text-[#4a3f33]" id="modalDesc"></p>
         <div class="mt-3.5 flex flex-wrap gap-2" id="modalMeta"></div>
 
+        <input id="itemNote" type="text" class="mt-3 w-full rounded-xl border border-line bg-white px-3 py-2.5 text-[14px] focus:border-accent focus:outline-none focus:ring-2 focus:ring-[rgba(230,97,2,0.35)]" />
+
         <div class="mt-[18px] flex items-center gap-3">
           <div class="flex items-center overflow-hidden rounded-xl border border-line" role="group" aria-label="Adet seçimi">
             <button id="qtyMinus" class="h-[46px] w-10 bg-[#f6efe6] text-[20px] text-accent" type="button" aria-label="Azalt">−</button>
             <span id="qtyValue" class="min-w-10 text-center font-semibold">1</span>
             <button id="qtyPlus" class="h-[46px] w-10 bg-[#f6efe6] text-[20px] text-accent" type="button" aria-label="Arttır">+</button>
           </div>
-          <button id="addToCart" class="flex h-[46px] flex-1 items-center justify-center rounded-xl bg-gradient-to-br from-accent to-accent-dark text-[15px] font-semibold text-white shadow-[0_4px_14px_rgba(230,97,2,0.3)] transition-all hover:brightness-105 hover:shadow-[0_6px_18px_rgba(230,97,2,0.42)] active:scale-[0.98]" type="button">Sepete Ekle</button>
+          <button id="addToCart" class="flex h-[46px] flex-1 items-center justify-center rounded-xl bg-gradient-to-br from-accent to-accent-dark text-[15px] font-semibold text-white shadow-[0_4px_14px_rgba(230,97,2,0.3)] transition-all hover:brightness-105 hover:shadow-[0_6px_18px_rgba(230,97,2,0.42)] active:scale-[0.98]" type="button" data-i18n="addToOrder">Sepete Ekle</button>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Sepet çubuğu -->
-  <button id="cartBar" class="cart-bar fixed inset-x-3.5 bottom-[86px] z-40 flex items-center gap-3 rounded-2xl border-2 border-white bg-gradient-to-br from-accent to-accent-dark px-4 py-3 text-white shadow-[0_10px_30px_rgba(0,0,0,0.35)] animate-slide-up" aria-label="Sepeti aç" hidden>
+  <button id="cartBar" class="cart-bar fixed inset-x-3.5 bottom-[86px] z-40 flex items-center gap-3 rounded-2xl border-2 border-white bg-gradient-to-br from-accent to-accent-dark px-4 py-3 text-white shadow-[0_10px_30px_rgba(0,0,0,0.35)] animate-slide-up" aria-label="Sipariş ver" hidden>
     <span class="cart-badge flex h-6 min-w-6 items-center justify-center rounded-full bg-gold px-1.5 text-[13px] font-bold text-ink animate-badge-pulse" id="cartCount">0</span>
-    <span class="flex-1 text-left text-[15px] font-semibold">Sepeti Gör</span>
+    <span data-i18n="placeOrder" class="flex-1 text-left text-[15px] font-semibold">Sipariş Ver</span>
     <span class="text-[15px] font-bold" id="cartBarTotal">0 ₺</span>
   </button>
 
   <div id="cartPanel" class="cart-panel fixed bottom-0 right-0 top-0 z-[60] flex w-full max-w-[420px] flex-col bg-white shadow-[-10px_0_30px_rgba(0,0,0,0.15)]" aria-hidden="true">
     <div class="flex items-center justify-between border-b border-line px-5 py-[18px]">
-      <h2 class="font-serif text-[20px] font-bold">Sepetim</h2>
+      <h2 data-i18n="myOrder" class="font-serif text-[20px] font-bold">Siparişim</h2>
       <button id="cartClose" class="text-[28px] text-muted" aria-label="Sepeti kapat">&times;</button>
     </div>
     <div class="flex-1 overflow-y-auto py-2" id="cartItems"></div>
     <div class="cart-empty flex flex-1 flex-col items-center justify-center gap-2 text-muted" id="cartEmpty">
       <span class="text-[46px] leading-none">🛒</span>
-      <span class="text-[15px] font-semibold text-ink">Sepetiniz boş</span>
-      <span class="text-[12.5px]">Menüden lezzetler ekleyin</span>
+      <span data-i18n="emptyTitle" class="text-[15px] font-semibold text-ink">Henüz ürün eklemediniz</span>
+      <span data-i18n="emptySub" class="text-[12.5px]">Menüden lezzetler seçin</span>
     </div>
     <div class="border-t border-line bg-[#fdfaf5] px-5 pb-5 pt-4">
       <div class="mb-3.5 flex justify-between text-[17px] font-bold">
-        <span>Toplam</span>
+        <span data-i18n="total">Toplam</span>
         <span id="cartTotal">0 ₺</span>
       </div>
       <div>
-        <label for="tableNo" class="mb-1.5 block text-[13px] font-semibold text-[#5c4b39]">Masa No</label>
-        <input id="tableNo" type="text" inputmode="numeric" placeholder="örn. 7" class="mb-3 w-full rounded-[10px] border border-line bg-white px-3 py-[11px] text-[14px] focus:border-accent focus:outline-none focus:ring-2 focus:ring-[rgba(230,97,2,0.35)]" />
-        <label for="customerNote" class="mb-1.5 block text-[13px] font-semibold text-[#5c4b39]">Not (isteğe bağlı)</label>
+        <label for="tableNo" data-i18n="tableNo" class="mb-1.5 block text-[13px] font-semibold text-[#5c4b39]">Masa No (opsiyonel)</label>
+        <input id="tableNo" type="text" inputmode="numeric" placeholder="QR'dan otomatik dolar" class="mb-3 w-full rounded-[10px] border border-line bg-white px-3 py-[11px] text-[14px] focus:border-accent focus:outline-none focus:ring-2 focus:ring-[rgba(230,97,2,0.35)]" />
+        <label for="customerNote" data-i18n="note" class="mb-1.5 block text-[13px] font-semibold text-[#5c4b39]">Not (isteğe bağlı)</label>
         <textarea id="customerNote" rows="2" placeholder="örn. az acılı, soğansız..." class="w-full resize-none rounded-[10px] border border-line bg-white px-3 py-[11px] text-[14px] focus:border-accent focus:outline-none focus:ring-2 focus:ring-[rgba(230,97,2,0.35)]"></textarea>
       </div>
-      <button id="checkoutBtn" class="mt-3 flex h-[46px] w-full items-center justify-center rounded-xl bg-gradient-to-br from-accent to-accent-dark text-[15px] font-semibold text-white shadow-[0_4px_14px_rgba(230,97,2,0.3)] transition-all hover:brightness-105 hover:shadow-[0_6px_18px_rgba(230,97,2,0.42)] active:scale-[0.98]" type="button">Siparişi Gönder (WhatsApp)</button>
+      <button id="checkoutBtn" class="mt-3 flex h-[46px] w-full items-center justify-center rounded-xl bg-gradient-to-br from-accent to-accent-dark text-[15px] font-semibold text-white shadow-[0_4px_14px_rgba(230,97,2,0.3)] transition-all hover:brightness-105 hover:shadow-[0_6px_18px_rgba(230,97,2,0.42)] active:scale-[0.98]" type="button" data-i18n="placeOrder">Sipariş Ver</button>
     </div>
   </div>
   <div id="cartOverlay" class="fixed inset-0 z-[59] bg-black/50 animate-fade-in" hidden></div>
@@ -179,6 +198,7 @@
     </a>
   </nav>
 
+  <script src="lang.js"></script>
   <script src="data.js"></script>
   <script src="app.js"></script>
 </body>

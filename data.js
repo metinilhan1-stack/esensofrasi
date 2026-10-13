@@ -16,6 +16,14 @@ const RESTAURANT = {
     "https://www.google.com/maps/search/?api=1&query=Esen%20Sofras%C4%B1%20Necip%20Faz%C4%B1l%20Bulvar%C4%B1%20Sincan%20Ankara",
 };
 
+const CAMPAIGN = {
+  active: true,
+  title: "4 Efsane Menü, Tek Fiyat!",
+  subtitle: "Lezzet, doyuruculuk ve uygun fiyat bir arada",
+  title_en: "4 Legendary Menus, One Price!",
+  subtitle_en: "Taste, fullness and great value together",
+};
+
 const PLACEHOLDER = (text, bg = "7a1f1f", fg = "ffffff") =>
   `https://placehold.co/600x450/${bg}/${fg}?text=${encodeURIComponent(text)}`;
 
