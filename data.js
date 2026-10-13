@@ -37,9 +37,8 @@ const MENU = [
         tags: ["Acılı", "Izgara"],
         ingredients: ["Dana kıyma", "Kuyruk yağı", "Pul biber", "Lavaş"],
         images: [
-          "images/adana-kebap-1.jpg",
-          PLACEHOLDER("Adana+Kebap+2", "a3432b"),
-          PLACEHOLDER("Adana+Kebap+3", "4d1313"),
+          "menuimages/kebap1.jpg",
+          "menuimages/kebap2.jpg",
         ],
       },
       {
@@ -51,8 +50,8 @@ const MENU = [
         tags: ["Acısız", "Izgara"],
         ingredients: ["Dana kıyma", "Kuyruk yağı", "Tuz", "Lavaş"],
         images: [
-          "images/urfa-kebap-1.jpg",
-          PLACEHOLDER("Urfa+Kebap+2", "a3432b"),
+          "menuimages/kebap3.jpg",
+          "menuimages/kebap4.jpg",
         ],
       },
       {
@@ -64,8 +63,8 @@ const MENU = [
         tags: ["Yoğurtlu", "Soslu"],
         ingredients: ["Dana kıyma", "Lavaş", "Domates sosu", "Tereyağı"],
         images: [
-          PLACEHOLDER("Beyti+Kebap"),
-          PLACEHOLDER("Beyti+Kebap+2", "a3432b"),
+          "menuimages/kebap5.jpg",
+          "menuimages/kebap6.jpg",
         ],
       },
       {
@@ -77,8 +76,8 @@ const MENU = [
         tags: ["Izgara"],
         ingredients: ["Kuşbaşı dana", "Soğan", "Karabiber", "Lavaş"],
         images: [
-          "images/sis-kebap-1.jpg",
-          PLACEHOLDER("Sis+Kebap+2", "4d1313"),
+          "menuimages/kebap7.jpg",
+          "menuimages/kebap8.jpg",
         ],
       },
       {
@@ -91,9 +90,7 @@ const MENU = [
         tags: ["Tereyağlı", "Yoğurtlu"],
         ingredients: ["Döner", "Pide", "Domates sosu", "Tereyağı", "Yoğurt"],
         images: [
-          PLACEHOLDER("Iskender+Kebap"),
-          PLACEHOLDER("Iskender+Kebap+2", "a3432b"),
-          PLACEHOLDER("Iskender+Kebap+3", "4d1313"),
+          "menuimages/kebap9.jpg",
         ],
       },
       {
@@ -106,8 +103,7 @@ const MENU = [
         tags: ["Karışık", "2-3 Kişilik"],
         ingredients: ["Adana", "Urfa", "Şiş", "Pirzola", "Lavaş"],
         images: [
-          PLACEHOLDER("Karisik+Izgara"),
-          PLACEHOLDER("Karisik+Izgara+2", "a3432b"),
+          "menuimages/kebap10.jpg",
         ],
       },
     ],
@@ -129,8 +125,7 @@ const MENU = [
         tags: ["Vejetaryen"],
         ingredients: ["Hamur", "Kaşar peyniri", "Tereyağı"],
         images: [
-          PLACEHOLDER("Kasarlı+Pide"),
-          PLACEHOLDER("Kasarlı+Pide+2", "4d1313"),
+          "menuimages/pide1.jpg",
         ],
       },
       {
@@ -142,8 +137,7 @@ const MENU = [
         tags: ["Kıymalı"],
         ingredients: ["Kıyma", "Soğan", "Domates", "Maydanoz"],
         images: [
-          PLACEHOLDER("Kıymalı+Pide"),
-          PLACEHOLDER("Kıymalı+Pide+2", "a3432b"),
+          "menuimages/pide2.jpg",
         ],
       },
       {
@@ -155,8 +149,7 @@ const MENU = [
         tags: ["Etli"],
         ingredients: ["Kuşbaşı et", "Kaşar", "Biber", "Domates"],
         images: [
-          PLACEHOLDER("Kusbasılı+Pide"),
-          PLACEHOLDER("Kusbasılı+Pide+2", "4d1313"),
+          "menuimages/pide3.jpg",
         ],
       },
       {
@@ -168,8 +161,7 @@ const MENU = [
         tags: ["Karışık"],
         ingredients: ["Kıyma", "Kuşbaşı", "Sucuk", "Kaşar"],
         images: [
-          PLACEHOLDER("Karisik+Pide"),
-          PLACEHOLDER("Karisik+Pide+2", "a3432b"),
+          "menuimages/pide4.jpg",
         ],
       },
       {
@@ -181,8 +173,7 @@ const MENU = [
         tags: ["Pastırmalı"],
         ingredients: ["Pastırma", "Kaşar", "Yumurta"],
         images: [
-          PLACEHOLDER("Pastırmalı+Pide"),
-          PLACEHOLDER("Pastırmalı+Pide+2", "4d1313"),
+          "menuimages/pide5.jpg",
         ],
       },
     ],
@@ -204,7 +195,7 @@ const MENU = [
         tags: ["Sıcak", "Fıstıklı"],
         ingredients: ["Kadayıf", "Peynir", "Şerbet", "Antep fıstığı"],
         images: [
-          PLACEHOLDER("Kunefe"),
+          "menuimages/tatlıkunefe.jpg",
           PLACEHOLDER("Kunefe+2", "a3432b"),
         ],
       },
@@ -230,7 +221,7 @@ const MENU = [
         tags: ["Sütlü"],
         ingredients: ["Süt", "Pirinç", "Şeker"],
         images: [
-          PLACEHOLDER("Sutlac"),
+          "menuimages/tatlısutlac.jpg",
           PLACEHOLDER("Sutlac+2", "a3432b"),
         ],
       },
@@ -341,8 +332,7 @@ const MENU = [
         tags: ["Acılı", "Vejetaryen"],
         ingredients: ["İnce bulgur", "İsot", "Domates salçası", "Nar ekşisi"],
         images: [
-          PLACEHOLDER("Cig+Kofte"),
-          PLACEHOLDER("Cig+Kofte+2", "e66102"),
+          "menuimages/ikram1.jpg",
         ],
       },
       {
@@ -354,7 +344,7 @@ const MENU = [
         tags: ["Taze", "Vejetaryen"],
         ingredients: ["Mevsim yeşillikleri", "Domates", "Salatalık", "Zeytinyağı"],
         images: [
-          PLACEHOLDER("Mevsim+Salatasi", "e66102"),
+          "menuimages/ikram2.jpg",
         ],
       },
       {
@@ -366,7 +356,7 @@ const MENU = [
         tags: ["Acılı", "Vejetaryen"],
         ingredients: ["Domates", "Biber", "Sarımsak", "Nar ekşisi"],
         images: [
-          PLACEHOLDER("Acili+Ezme", "e66102"),
+          "menuimages/ikram3.jpg",
         ],
       },
       {
