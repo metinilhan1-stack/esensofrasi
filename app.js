@@ -71,6 +71,10 @@
     if (LANG !== "en") return item.tags || [];
     return (item.tags || []).map((tag) => TAG_EN[tag] || tag);
   }
+  function catIcon(cat) {
+    const found = (typeof ICONS !== "undefined" ? ICONS : []).find((i) => i.id === cat.icon);
+    return found ? found.svg : cat.icon;
+  }
 
   /* ---------- Yardımcılar ---------- */
   function toastMessage(msg) {
@@ -149,7 +153,7 @@
         "category-header flex w-full cursor-pointer items-center gap-3 border-none bg-transparent px-4 py-4 text-left text-ink hover:bg-[#fbf6ef]";
       header.setAttribute("aria-expanded", "false");
       header.innerHTML = `
-        <span class="category-icon flex h-[46px] w-[46px] shrink-0 items-center justify-center rounded-[14px] text-[22px] transition-transform duration-300" aria-hidden="true">${cat.icon}</span>
+        <span class="category-icon flex h-[46px] w-[46px] shrink-0 items-center justify-center rounded-[14px] text-[22px] transition-transform duration-300" aria-hidden="true">${catIcon(cat)}</span>
         <span class="category-info min-w-0 flex-1">
           <span class="category-name block font-serif text-[18px] font-bold">${catName(cat)}</span>
           <span class="category-desc mt-0.5 block text-[12.5px] leading-snug text-muted">${catDesc(cat)}</span>

@@ -24,6 +24,10 @@
     .cat-head .nm { font-size: 16px; font-weight: 700; width: 100%; }
     .cat-head .ds { font-size: 12.5px; color: #8a7a68; width: 100%; }
     .cat-head .ic { width: 52px; font-size: 18px; text-align: center; }
+    .ic-wrap { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+    .ic-prev { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 10px; background: #f6efe6; color: #b84d02; }
+    .ic-prev svg { width: 22px; height: 22px; }
+    .ic-sel { width: 130px; font-size: 12.5px; padding: 6px 8px; }
     .cat-head .clr { width: 46px; height: 40px; padding: 2px; border: 1px solid #eadfd2; border-radius: 8px; }
     .cat-head .rbtns { display: flex; gap: 6px; align-items: center; }
     input, textarea, select { border: 1px solid #eadfd2; border-radius: 8px; padding: 8px 10px; font-size: 13.5px; background: #fff; }
@@ -44,6 +48,8 @@
     .imgs .mini button { position: absolute; top: -6px; right: -6px; width: 20px; height: 20px; border-radius: 50%; border: none; background: #c0392b; color: #fff; font-size: 12px; line-height: 1; cursor: pointer; }
     .mini-add { width: 52px; height: 52px; border-radius: 8px; border: 1.5px dashed #d9c9b8; background: #faf6f0; color: #b84d02; font-size: 20px; cursor: pointer; }
     .del-item { background: none; border: none; color: #c0392b; font-size: 13px; cursor: pointer; padding: 4px 6px; }
+    .tgl { border: none; background: #f6efe6; color: #b84d02; width: 34px; height: 34px; border-radius: 8px; cursor: pointer; font-size: 16px; }
+    .cat.closed .items, .cat.closed .add-item { display: none; }
     .add-item { width: 100%; border: 1.5px dashed #d9c9b8; background: #faf6f0; color: #b84d02; font-size: 13.5px; font-weight: 600; padding: 10px; cursor: pointer; border-radius: 0 0 14px 14px; }
     .add-cat { width: 100%; border: 2px dashed #d9c9b8; background: #fff; color: #b84d02; font-size: 15px; font-weight: 700; padding: 16px; cursor: pointer; border-radius: 14px; }
     .toast { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); background: #2a1606; color: #fff; padding: 11px 20px; border-radius: 24px; font-size: 14px; opacity: 0; pointer-events: none; transition: opacity .25s, transform .25s; z-index: 100; }

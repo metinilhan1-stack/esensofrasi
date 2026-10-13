@@ -43,6 +43,17 @@
       .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
   }
 
+  function iconPreview(cat) {
+    const found = (ICONS || []).find((i) => i.id === cat.icon);
+    return found ? found.svg : "";
+  }
+
+  function iconOptions(cat) {
+    return (ICONS || []).map(
+      (i) => `<option value="${i.id}" ${cat.icon === i.id ? "selected" : ""}>${esc(i.name)}</option>`
+    ).join("");
+  }
+
   function itemRow(ci, ii, item) {
     const img = item.images && item.images[0] ? item.images[0] : "";
     return `
@@ -75,17 +86,21 @@
     list.innerHTML = "";
     menu.forEach((cat, ci) => {
       const card = document.createElement("div");
-      card.className = "cat";
+      card.className = "cat closed";
       card.style.borderLeftColor = cat.color || "#e66102";
       card.innerHTML = `
         <div class="cat-head">
-          <input class="ic" data-ci="${ci}" data-f="icon" value="${esc(cat.icon)}" placeholder="🍢" title="İkon (emoji)">
+          <div class="ic-wrap">
+            <span class="ic-prev">${iconPreview(cat)}</span>
+            <select class="ic-sel" data-ci="${ci}" data-f="icon" title="İkon seç">${iconOptions(cat)}</select>
+          </div>
           <div class="grow">
             <input class="nm" data-ci="${ci}" data-f="name" value="${esc(cat.name)}" placeholder="Kategori adı">
             <input class="ds" data-ci="${ci}" data-f="description" value="${esc(cat.description || "")}" placeholder="Açıklama">
           </div>
           <input class="clr" type="color" data-ci="${ci}" data-f="color" value="${cat.color || "#e66102"}">
           <div class="rbtns">
+            <button class="tgl" data-action="toggle" data-ci="${ci}" title="Aç / Kapat">▸</button>
             <button class="btn danger" data-action="delcat" data-ci="${ci}" title="Kategoriyi sil">🗑</button>
           </div>
         </div>
@@ -107,7 +122,7 @@
     const ii = t.dataset.ii;
 
     if (ii === undefined) {
-      if (f === "name" || f === "description" || f === "icon" || f === "color") menu[ci][f] = t.value;
+      if (f === "name" || f === "description" || f === "color") menu[ci][f] = t.value;
     } else {
       const item = menu[ci].items[ii];
       if (f === "name" || f === "description") item[f] = t.value;
@@ -117,12 +132,16 @@
     save();
   });
 
-  /* Checkbox (aktif/pasif) */
+  /* Checkbox (aktif/pasif) ve ikon seçimi */
   list.addEventListener("change", (e) => {
     const t = e.target;
     if (t.dataset.f === "available" && t.dataset.ci !== undefined && t.dataset.ii !== undefined) {
       menu[t.dataset.ci].items[t.dataset.ii].available = t.checked;
       save();
+    } else if (t.dataset.f === "icon" && t.dataset.ci !== undefined) {
+      menu[t.dataset.ci].icon = t.value;
+      save();
+      render();
     }
   });
 
@@ -139,6 +158,13 @@
       if (!confirm("Kategoriyi ve içindeki tüm ürünleri silmek istiyor musunuz?")) return;
       menu.splice(ci, 1);
       save(); render();
+    } else if (action === "toggle") {
+      const card = b.closest(".cat");
+      if (card) {
+        card.classList.toggle("closed");
+        const isClosed = card.classList.contains("closed");
+        b.textContent = isClosed ? "▸" : "▾";
+      }
     } else if (action === "additem") {
       menu[ci].items.push({ id: uid("item"), name: "", price: 0, description: "", tags: [], ingredients: [], images: [], available: true });
       save(); render();
@@ -157,7 +183,7 @@
   });
 
   addCatBtn.addEventListener("click", () => {
-    menu.push({ id: uid("cat"), name: "", description: "", icon: "🍽️", color: "#e66102", items: [] });
+    menu.push({ id: uid("cat"), name: "", description: "", icon: "utensils", color: "#e66102", items: [] });
     save(); render();
   });
 
@@ -197,6 +223,8 @@ const CAMPAIGN = ${JSON.stringify(CAMPAIGN, null, 2)};
 
 const PLACEHOLDER = (text, bg = "7a1f1f", fg = "ffffff") =>
   \`https://placehold.co/600x450/\${bg}/\${fg}?text=\${encodeURIComponent(text)}\`;
+
+const ICONS = ${JSON.stringify(ICONS, null, 2)};
 
 const MENU = ${JSON.stringify(menu, null, 2)};
 
