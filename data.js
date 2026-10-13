@@ -267,7 +267,7 @@ const MENU = [
         price: 35,
         tags: ["Soğuk"],
         ingredients: ["Yoğurt", "Su", "Tuz"],
-        images: [PLACEHOLDER("Ayran")],
+        images: ["menuimages/ayran.jpg"],
       },
       {
         id: "kola",
@@ -276,7 +276,7 @@ const MENU = [
         price: 50,
         tags: ["Soğuk"],
         ingredients: [],
-        images: [PLACEHOLDER("Kola")],
+        images: ["menuimages/kola.jpg"],
       },
       {
         id: "gazoz",
@@ -285,7 +285,7 @@ const MENU = [
         price: 45,
         tags: ["Soğuk"],
         ingredients: [],
-        images: [PLACEHOLDER("Gazoz")],
+        images: ["menuimages/gazoz.jpg"],
       },
       {
         id: "cay",
@@ -294,7 +294,7 @@ const MENU = [
         price: 20,
         tags: ["Sıcak"],
         ingredients: [],
-        images: [PLACEHOLDER("Cay")],
+        images: ["menuimages/cay.jpg"],
       },
       {
         id: "turk-kahvesi",
@@ -303,7 +303,7 @@ const MENU = [
         price: 60,
         tags: ["Sıcak"],
         ingredients: [],
-        images: [PLACEHOLDER("Turk+Kahvesi")],
+        images: ["menuimages/kahve.jpg"],
       },
       {
         id: "su",
@@ -312,7 +312,7 @@ const MENU = [
         price: 15,
         tags: ["Soğuk"],
         ingredients: [],
-        images: [PLACEHOLDER("Su")],
+        images: ["menuimages/su.jpg"],
       },
     ],
   },
