@@ -135,9 +135,9 @@ const MENU = [
       },
       {
         "id": "ikramlar-ezme",
-        "name": "Acılı Ezme",
+        "name": "Ezme(Acılı-Acısız)",
         "description": "İnce ince doğranmış domates, biber, soğan ve sarımsak, nar ekşisiyle buluşur. Kebapların yanına yakışan, hafif acılı ve taptaze bir meze.",
-        "price": 0,
+        "price": 100,
         "tags": [
           "Acılı",
           "Vejetaryen"
