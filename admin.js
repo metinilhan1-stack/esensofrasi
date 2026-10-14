@@ -3,7 +3,7 @@
 (() => {
   "use strict";
 
-  const KEY = "esensofrasi-admin-menu";
+  const KEY = "esensofrasi-admin-menu-" + (typeof DATA_VERSION !== "undefined" ? DATA_VERSION : "legacy");
   const list = document.getElementById("list");
   const addCatBtn = document.getElementById("addCatBtn");
   const tokenBtn = document.getElementById("tokenBtn");
@@ -218,6 +218,8 @@
    ============================================================ */
 
 const RESTAURANT = ${JSON.stringify(RESTAURANT, null, 2)};
+
+const DATA_VERSION = ${JSON.stringify(typeof DATA_VERSION !== "undefined" ? DATA_VERSION : "v2")};
 
 const CAMPAIGN = ${JSON.stringify(CAMPAIGN, null, 2)};
 
