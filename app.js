@@ -194,6 +194,10 @@
     const name = itemName(item);
     const desc = itemDesc(item);
     el.innerHTML = `
+      <span class="relative shrink-0">
+        <img class="h-[66px] w-[66px] rounded-[14px] bg-[#eee5da] object-cover shadow-[0_2px_6px_rgba(0,0,0,0.08)]" src="${item.images[0]}" alt="${name}" loading="lazy" decoding="async" />
+        ${item.images.length > 1 ? `<span class="absolute bottom-1 right-1 rounded-lg bg-black/60 px-1.5 py-px text-[10px] text-white">${item.images.length}</span>` : ""}
+      </span>
       <span class="min-w-0 flex-1 overflow-hidden">
         <span class="flex items-center gap-1.5">
           ${item.featured ? `<span class="shrink-0 text-[14px] leading-none text-accent" title="${t("chefsChoice")}">★</span>` : ""}
