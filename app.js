@@ -193,10 +193,10 @@
       .join("");
     const name = itemName(item);
     const desc = itemDesc(item);
+    const qty = (cart.get(item.id) || { qty: 0 }).qty;
     el.innerHTML = `
       <span class="relative shrink-0">
         <img class="h-[66px] w-[66px] rounded-[14px] bg-[#eee5da] object-cover shadow-[0_2px_6px_rgba(0,0,0,0.08)]" src="${item.images[0]}" alt="${name}" loading="lazy" decoding="async" />
-        ${item.images.length > 1 ? `<span class="absolute bottom-1 right-1 rounded-lg bg-black/60 px-1.5 py-px text-[10px] text-white">${item.images.length}</span>` : ""}
       </span>
       <span class="min-w-0 flex-1 overflow-hidden">
         <span class="flex items-center gap-1.5">
@@ -206,8 +206,10 @@
         ${desc ? `<span class="mt-0.5 line-clamp-2 text-[12px] leading-snug text-muted">${desc}</span>` : ""}
         ${tags ? `<span class="mt-1 flex flex-nowrap gap-1">${tags}</span>` : ""}
       </span>
-      <span class="shrink-0 whitespace-nowrap text-[15px] font-bold text-accent">${formatPrice(item.price)}</span>
-      <button class="flex h-[34px] w-[34px] shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-accent to-accent-dark text-[20px] leading-none text-white shadow-[0_3px_10px_rgba(230,97,2,0.35)] transition-all hover:-translate-y-px hover:scale-[1.04] hover:shadow-[0_5px_14px_rgba(230,97,2,0.5)] active:scale-[0.88]" aria-label="${name} ${t("addToOrder")}" data-add="${item.id}">+</button>
+      ${item.price > 0 ? `<span class="shrink-0 whitespace-nowrap text-[15px] font-bold text-accent">${formatPrice(item.price)}</span>` : ""}
+      <button class="relative flex h-[34px] w-[34px] shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-accent to-accent-dark text-[20px] leading-none text-white shadow-[0_3px_10px_rgba(230,97,2,0.35)] transition-all hover:-translate-y-px hover:scale-[1.04] hover:shadow-[0_5px_14px_rgba(230,97,2,0.5)] active:scale-[0.88]" aria-label="${name} ${t("addToOrder")}" data-add="${item.id}">+
+        <span class="${qty > 0 ? "" : "hidden "}absolute -right-1.5 -top-1.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-gold px-1 text-[11px] font-bold text-ink shadow" data-qty="${item.id}">${qty}</span>
+      </button>
     `;
 
     el.addEventListener("click", (e) => {
@@ -254,6 +256,7 @@
 
     modalTitle.textContent = itemName(item);
     modalPrice.textContent = formatPrice(item.price);
+    modalPrice.style.display = item.price > 0 ? "" : "none";
     modalDesc.textContent = itemDesc(item);
 
     modalMeta.innerHTML = "";
@@ -278,6 +281,11 @@
   function renderGallery(images) {
     galleryTrack.innerHTML = "";
     galleryDots.innerHTML = "";
+    const multiple = images.length > 1;
+    modal.querySelectorAll("[data-carousel]").forEach((a) => (a.style.display = multiple ? "" : "none"));
+    const gc = document.getElementById("galleryCount");
+    if (gc) gc.style.display = multiple ? "" : "none";
+    galleryDots.style.display = multiple ? "" : "none";
 
     images.forEach((src, i) => {
       const slide = document.createElement("div");
@@ -359,6 +367,15 @@
     addToCart(id, 1);
   }
 
+  function updateItemBadges() {
+    document.querySelectorAll("[data-qty]").forEach((el) => {
+      const entry = cart.get(el.dataset.qty);
+      const qty = entry ? entry.qty : 0;
+      el.textContent = qty;
+      el.classList.toggle("hidden", qty === 0);
+    });
+  }
+
   function renderCart() {
     cartItems.innerHTML = "";
     const count = cartCountValue();
@@ -370,6 +387,7 @@
     cartBarTotal.textContent = formatPrice(total);
     cartTotal.textContent = formatPrice(total);
     cartEmpty.style.display = count === 0 ? "flex" : "none";
+    updateItemBadges();
 
     cart.forEach((entry, id) => {
       const item = productById.get(id);
