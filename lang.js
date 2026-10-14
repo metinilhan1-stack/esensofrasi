@@ -68,11 +68,13 @@ const UI = {
 };
 
 const CATEGORY_EN = {
+  corba: { name: "Soups", description: "Traditional Turkish soups" },
+  ikramlar: { name: "Starters", description: "Fresh and grilled appetizers" },
   kebaplar: { name: "Kebabs", description: "Charcoal-grilled kebabs, prepared by masters" },
+  guvec: { name: "Casseroles", description: "Oven-baked clay pot dishes" },
   pideler: { name: "Pides", description: "Crispy stone-oven pides with rich toppings" },
   tatlilar: { name: "Desserts", description: "Syrupy and milky desserts" },
   icecekler: { name: "Drinks", description: "Cold and hot beverages" },
-  ikramlar: { name: "Starters", description: "Fresh and grilled appetizers" },
 };
 
 const TAG_EN = {

@@ -193,13 +193,11 @@
       .join("");
     const name = itemName(item);
     el.innerHTML = `
-      <span class="relative shrink-0">
-        <img class="h-[66px] w-[66px] rounded-[14px] bg-[#eee5da] object-cover shadow-[0_2px_6px_rgba(0,0,0,0.08)]" src="${item.images[0]}" alt="${name}" loading="lazy" />
-        ${item.featured ? `<span class="absolute -left-1.5 -top-1.5 z-[2] flex h-[23px] w-[23px] items-center justify-center rounded-full bg-gradient-to-br from-[#ffc36b] to-accent text-[13px] leading-none text-white shadow-[0_2px_6px_rgba(0,0,0,0.3)]" title="${t("chefsChoice")}">★</span>` : ""}
-        ${item.images.length > 1 ? `<span class="absolute bottom-1 right-1 rounded-lg bg-black/60 px-1.5 py-px text-[10px] text-white">${item.images.length}</span>` : ""}
-      </span>
       <span class="min-w-0 flex-1 overflow-hidden">
-        <span class="block overflow-hidden text-ellipsis whitespace-nowrap text-[15px] font-semibold tracking-wide">${name}</span>
+        <span class="flex items-center gap-1.5">
+          ${item.featured ? `<span class="shrink-0 text-[14px] leading-none text-accent" title="${t("chefsChoice")}">★</span>` : ""}
+          <span class="min-w-0 overflow-hidden text-ellipsis whitespace-nowrap text-[15px] font-semibold tracking-wide">${name}</span>
+        </span>
         ${tags ? `<span class="mt-1 flex flex-nowrap gap-1">${tags}</span>` : ""}
       </span>
       <span class="shrink-0 whitespace-nowrap text-[15px] font-bold text-accent">${formatPrice(item.price)}</span>
