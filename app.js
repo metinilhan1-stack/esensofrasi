@@ -192,12 +192,14 @@
       .map((tag) => `<span class="tag-chip whitespace-nowrap rounded-full px-2 py-0.5 text-[10.5px] font-semibold tracking-wide">${tag}</span>`)
       .join("");
     const name = itemName(item);
+    const desc = itemDesc(item);
     el.innerHTML = `
       <span class="min-w-0 flex-1 overflow-hidden">
         <span class="flex items-center gap-1.5">
           ${item.featured ? `<span class="shrink-0 text-[14px] leading-none text-accent" title="${t("chefsChoice")}">★</span>` : ""}
           <span class="min-w-0 overflow-hidden text-ellipsis whitespace-nowrap text-[15px] font-semibold tracking-wide">${name}</span>
         </span>
+        ${desc ? `<span class="mt-0.5 line-clamp-2 block text-[12px] leading-snug text-muted">${desc}</span>` : ""}
         ${tags ? `<span class="mt-1 flex flex-nowrap gap-1">${tags}</span>` : ""}
       </span>
       <span class="shrink-0 whitespace-nowrap text-[15px] font-bold text-accent">${formatPrice(item.price)}</span>
