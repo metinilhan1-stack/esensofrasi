@@ -49,7 +49,7 @@ const MENU = [
       {
         id: "corba-kellepaca",
         name: "Kelle Paça",
-        description: "Kemik suyunda saatlerce kaynatılan, doğal kolajen dolu geleneksel çorba. Sarımsak, sirke ve taze limon eşliğinde sıcak servis edilir.",
+        description: "Saatlerce kaynayan kemik suyunun eşsiz lezzeti, ağızda eriyen dana etiyle buluşur. Sarımsak, sirke ve limonla zenginleşen bu geleneksel çorba, soğuk günlerin vazgeçilmezidir.",
         price: 0,
         tags: ["Sıcak"],
         ingredients: [],
@@ -58,7 +58,7 @@ const MENU = [
       {
         id: "corba-mercimek",
         name: "Mercimek Çorbası",
-        description: "Kırmızı mercimeğin özenle pişirilmesiyle hazırlanan, kadifemsi kıvamlı klasik çorba. Üzerine tereyağı, kırmızı biber ve limon ile servis edilir.",
+        description: "Kırmızı mercimeğin kadifemsi kıvamı, üzerinde gezdirilen tereyağı ve kırmızı biberle taçlanır. Sıcacık servis edilir, yanında limonla içinizi ısıtır.",
         price: 0,
         tags: ["Sıcak","Vejetaryen"],
         ingredients: [],
@@ -76,7 +76,7 @@ const MENU = [
       {
         id: "ikramlar-cigkofte",
         name: "Çiğ Köfte",
-        description: "İnce bulgur, isot, domates salçası ve baharatla yoğrulan geleneksel çiğ köfte. Marul, limon ve lavaş eşliğinde taze taze servis edilir.",
+        description: "İnce bulgur, isot ve domates salçasının usta ellerde yoğrulmasıyla hazırlanan geleneksel çiğ köfte. Marul ve limon eşliğinde, acılı ve ferahlatıcı bir başlangıç.",
         price: 0,
         tags: ["Acılı","Vejetaryen"],
         ingredients: [],
@@ -85,7 +85,7 @@ const MENU = [
       {
         id: "ikramlar-ezme",
         name: "Acılı Ezme",
-        description: "İnce doğranmış domates, biber, soğan, sarımsak ve nar ekşisiyle hazırlanan acılı meze. Kebapların yanında vazgeçilmez bir eşlikçidir.",
+        description: "İnce ince doğranmış domates, biber, soğan ve sarımsak, nar ekşisiyle buluşur. Kebapların yanına yakışan, hafif acılı ve taptaze bir meze.",
         price: 0,
         tags: ["Acılı","Vejetaryen"],
         ingredients: [],
@@ -94,7 +94,7 @@ const MENU = [
       {
         id: "ikramlar-patates",
         name: "Patates",
-        description: "Taze patatesin közde pişirilmesiyle hazırlanan, hafif baharatlı lezzet. Yanında soslarla birlikte ikram edilir.",
+        description: "Köz ateşinde pişirilen taze patates, dışı çıtır içi yumuşacık. Baharatlarla tatlandırılıp soslarla birlikte ikram edilir.",
         price: 0,
         tags: ["Vejetaryen"],
         ingredients: [],
@@ -103,7 +103,7 @@ const MENU = [
       {
         id: "ikramlar-salata",
         name: "Mevsim Salatası",
-        description: "Taze mevsim yeşillikleri, domates ve salatalıkla hazırlanan hafif salata. Nar ekşisi ve zeytinyağı sosuyla ferahlatıcı bir başlangıç.",
+        description: "Taze mevsim yeşillikleri, domates ve salatalık, nar ekşisi ve zeytinyağıyla harmanlanır. Hafif, ferahlatıcı ve sağlıklı bir başlangıç.",
         price: 0,
         tags: ["Taze","Vejetaryen"],
         ingredients: [],
@@ -121,7 +121,7 @@ const MENU = [
       {
         id: "kebaplar-adana",
         name: "Adana Kebap",
-        description: "El kıyması dana eti, kuyruk yağı ve pul biberle yoğrulan Adana, şişte köz ateşinde pişirilir. Yanında közlenmiş domates, biber ve sıcak lavaş ile servis edilir.",
+        description: "El kıyması dana eti, kuyruk yağı ve pul biberle yoğrulup şişte köz ateşinde pişirilir. Dumanı üstünde, yanında közlenmiş domates, biber ve sıcak lavaşla servis edilir.",
         price: 0,
         tags: ["Acılı","Izgara"],
         ingredients: [],
@@ -130,7 +130,7 @@ const MENU = [
       {
         id: "kebaplar-adanadurum",
         name: "Adana Dürüm",
-        description: "Közde pişirilen Adana kebabın, közlenmiş sebzeler ve bol yeşillikle lavaşa sarılmış hali. Doyurucu ve pratik bir lezzet.",
+        description: "Közde pişirilen Adana kebabın, közlenmiş sebzeler ve bol yeşillikle lavaşa sarılmış hali. Doyurucu, pratik ve lezzet dolu.",
         price: 0,
         tags: ["Acılı","Dürüm"],
         ingredients: [],
@@ -139,7 +139,7 @@ const MENU = [
       {
         id: "kebaplar-alinazik",
         name: "Ali Nazik",
-        description: "Közlenmiş patlıcanın sarımsaklı yoğurtla buluştuğu nefis taban üzerine közde kuzu şiş. Üzerine tereyağlı sos gezdirilerek servis edilir.",
+        description: "Közlenmiş patlıcan, sarımsaklı yoğurtla buluşur; üzerine közde kuzu şiş ve tereyağlı sos eklenir. Gaziantep mutfağının bu efsane lezzeti damakta iz bırakır.",
         price: 0,
         tags: ["Yoğurtlu"],
         ingredients: [],
@@ -148,7 +148,7 @@ const MENU = [
       {
         id: "kebaplar-alinazikadana",
         name: "Ali Nazik Adana",
-        description: "Közlenmiş patlıcanlı yoğurt üzerine közde Adana kebap. Acılı kebap ile yoğurdun uyumu, üzerine tereyağlı sos.",
+        description: "Közlenmiş patlıcanlı yoğurdun üzerine közde Adana kebap yerleştirilir. Acılı et ile yoğurdun uyumu, tereyağlı sosla tamamlanır.",
         price: 0,
         tags: ["Acılı","Yoğurtlu"],
         ingredients: [],
@@ -157,7 +157,7 @@ const MENU = [
       {
         id: "kebaplar-alinaziksis",
         name: "Ali Nazik Şiş",
-        description: "Közlenmiş patlıcanlı yoğurt üzerine közde kuzu şiş. Tereyağlı sos ile servis edilir.",
+        description: "Közlenmiş patlıcanlı yoğurt üzerine közde kuzu şiş. Tereyağlı sosun sıcaklığıyla servis edilen doyurucu bir tabak.",
         price: 0,
         tags: ["Yoğurtlu"],
         ingredients: [],
@@ -166,7 +166,7 @@ const MENU = [
       {
         id: "kebaplar-beyti",
         name: "Beyti Kebap",
-        description: "Lavaşa sarılıp dilimlenen közlenmiş kebap, üzerine sıcak domates sosu ve tereyağı. Yanında süzme yoğurt ile servis edilir.",
+        description: "Lavaşa sarılıp dilimlenen közlenmiş kebap, sıcak domates sosu ve tereyağıyla kaplanır. Yanında süzme yoğurtla servis edilir.",
         price: 0,
         tags: ["Yoğurtlu","Soslu"],
         ingredients: [],
@@ -175,7 +175,7 @@ const MENU = [
       {
         id: "kebaplar-ciger",
         name: "Ciğer Şiş",
-        description: "Baharatlı dana ciğeri, şişte közde özenle pişirilir. Sumaklı soğan ve lavaş ile servis edilir.",
+        description: "Baharatlı dana ciğeri, şişte közde nar gibi kızarana kadar pişirilir. Sumaklı soğan ve lavaşla, çıtır ve lezzetli.",
         price: 0,
         tags: ["Izgara"],
         ingredients: [],
@@ -184,7 +184,7 @@ const MENU = [
       {
         id: "kebaplar-cigerdurum",
         name: "Ciğer Dürüm",
-        description: "Közde pişirilen ciğer şişin, közlenmiş sebzelerle lavaşa sarılmış dürüm hali. Baharat ve sumak ile.",
+        description: "Közde pişirilen ciğer şiş, közlenmiş sebzelerle lavaşa sarılır. Baharat ve sumağın aromasıyla doyurucu bir dürüm.",
         price: 0,
         tags: ["Dürüm"],
         ingredients: [],
@@ -193,7 +193,7 @@ const MENU = [
       {
         id: "kebaplar-domateskebapi",
         name: "Domates Kebabı",
-        description: "Közlenmiş domates ve yeşillik eşliğinde servis edilen kebap. Közün tüm aromasını taşıyan geleneksel bir seçim.",
+        description: "Közlenmiş domates ve yeşillik eşliğinde sunulan kebap, közün tüm aromasını taşır. Sade ve geleneksel bir lezzet.",
         price: 0,
         tags: ["Izgara"],
         ingredients: [],
@@ -202,7 +202,7 @@ const MENU = [
       {
         id: "kebaplar-iskender",
         name: "İskender Kebap",
-        description: "Pide üzerine doğranmış döner eti, sıcak domates sosu ve tereyağı. Yanında süzme yoğurt ile Bursa klasiği.",
+        description: "Pide üzerine doğranmış döner, sıcak domates sosu ve tereyağıyla buluşur. Yanında süzme yoğurtla servis edilen Bursa klasiği.",
         price: 0,
         tags: ["Tereyağlı","Yoğurtlu"],
         ingredients: [],
@@ -211,7 +211,7 @@ const MENU = [
       {
         id: "kebaplar-kanat",
         name: "Tavuk Kanat",
-        description: "Özel sosla marine edilen tavuk kanatlar, közde nar gibi kızarana kadar pişirilir. Yanında közlenmiş sebzelerle.",
+        description: "Özel sosla marine edilen tavuk kanatlar, közde nar gibi kızarana kadar pişirilir. Yanında közlenmiş sebzelerle çıtır çıtır.",
         price: 0,
         tags: ["Izgara"],
         ingredients: [],
@@ -220,7 +220,7 @@ const MENU = [
       {
         id: "kebaplar-karisik",
         name: "Karışık Izgara",
-        description: "Adana, Urfa, şiş ve pirzoladan oluşan kalabalıklara özel karışık tabak. Lavaş ve közlenmiş sebzelerle zengin bir sunum.",
+        description: "Adana, Urfa, şiş ve pirzoladan oluşan kalabalıklara özel karışık. Lavaş ve közlenmiş sebzelerle zengin, doyurucu bir sunum.",
         price: 0,
         tags: ["Karışık"],
         ingredients: [],
@@ -229,7 +229,7 @@ const MENU = [
       {
         id: "kebaplar-kofte",
         name: "Izgara Köfte",
-        description: "Baharatlı dana kıymasından hazırlanan köfte, közde ızgara edilir. Yanında közlenmiş domates, biber ve lavaş ile.",
+        description: "Baharatlı dana kıymasından hazırlanan köfte, közde ızgara edilir. Yanında közlenmiş domates, biber ve sıcak lavaşla.",
         price: 0,
         tags: ["Izgara"],
         ingredients: [],
@@ -238,7 +238,7 @@ const MENU = [
       {
         id: "kebaplar-kuzusis",
         name: "Kuzu Şiş",
-        description: "Kuzu eti, şişte köz ateşinde özenle pişirilir. Yumuşak ve lezzetli; lavaş ile servis edilir.",
+        description: "Kuzu eti, şişte köz ateşinde yumuşacık kalana kadar pişirilir. Lavaş ve közlenmiş sebzelerle servis edilir.",
         price: 0,
         tags: ["Izgara"],
         ingredients: [],
@@ -247,7 +247,7 @@ const MENU = [
       {
         id: "kebaplar-kuzusisdurum",
         name: "Kuzu Şiş Dürüm",
-        description: "Közde pişirilen kuzu şişin, közlenmiş sebzelerle lavaşa sarılmış dürüm hali.",
+        description: "Közde pişirilen kuzu şiş, közlenmiş sebzelerle lavaşa sarılır. Doyurucu ve lezzetli bir dürüm.",
         price: 0,
         tags: ["Dürüm"],
         ingredients: [],
@@ -256,7 +256,7 @@ const MENU = [
       {
         id: "kebaplar-lahmacunsarma",
         name: "Lahmacun Sarma",
-        description: "Kıymalı lahmacun harcının lavaşa sarılıp rulo haline getirilmiş sunumu. Yanında yeşillik ile.",
+        description: "Kıymalı lahmacun harcı, lavaşa sarılıp rulo haline getirilir. Yanında taze yeşillikle servis edilen pratik bir lezzet.",
         price: 0,
         tags: ["Kıymalı"],
         ingredients: [],
@@ -265,7 +265,7 @@ const MENU = [
       {
         id: "kebaplar-lokum",
         name: "Lokum",
-        description: "Özenle seçilen etin közde pişirilmesiyle hazırlanan, yumuşacık ve ağızda dağılan lokum lezzeti.",
+        description: "Özenle seçilen et, közde ağır ateşte pişirilerek yumuşacık hale gelir. Ağızda dağılan bu lokum, et severlerin favorisi.",
         price: 0,
         tags: ["Izgara"],
         ingredients: [],
@@ -274,7 +274,7 @@ const MENU = [
       {
         id: "kebaplar-patlican",
         name: "Patlıcan Kebabı",
-        description: "Közlenmiş patlıcan ve etin bir araya geldiği geleneksel kebap. Üzerine domates sosu ve tereyağı ile.",
+        description: "Közlenmiş patlıcan ve et, domates sosu ve tereyağıyla bir araya gelir. Geleneksel ve doyurucu bir kebap.",
         price: 0,
         tags: ["Izgara"],
         ingredients: [],
@@ -283,7 +283,7 @@ const MENU = [
       {
         id: "kebaplar-pirzola",
         name: "Kuzu Pirzola",
-        description: "Marine edilmiş kuzu pirzola, közde özenle pişirilir. Lavaş ve közlenmiş sebzelerle servis edilir.",
+        description: "Marine edilmiş kuzu pirzola, közde özenle pişirilir. Lavaş ve közlenmiş sebzelerle servis edilen etli bir ziyafet.",
         price: 0,
         tags: ["Izgara"],
         ingredients: [],
@@ -292,7 +292,7 @@ const MENU = [
       {
         id: "kebaplar-tavuksis",
         name: "Tavuk Şiş",
-        description: "Marine edilmiş tavuk eti, şişte közde pişirilir. Hafif ve lezzetli bir tercih.",
+        description: "Marine edilmiş tavuk eti, şişte közde pişirilir. Hafif, yumuşak ve lezzetli bir tercih.",
         price: 0,
         tags: ["Izgara"],
         ingredients: [],
@@ -301,7 +301,7 @@ const MENU = [
       {
         id: "kebaplar-tavuksisdurum",
         name: "Tavuk Şiş Dürüm",
-        description: "Közde tavuk şişin, közlenmiş sebzelerle lavaşa sarılmış dürüm hali.",
+        description: "Közde tavuk şiş, közlenmiş sebzelerle lavaşa sarılır. Pratik ve lezzetli bir dürüm.",
         price: 0,
         tags: ["Dürüm"],
         ingredients: [],
@@ -310,7 +310,7 @@ const MENU = [
       {
         id: "kebaplar-urfa",
         name: "Urfa Kebap",
-        description: "Acısız, yalnızca tuzla yoğrulan klasik Urfa kebabı. Sumaklı soğan ve lavaş ile servis edilir.",
+        description: "Acısız, yalnızca tuzla yoğrulan klasik Urfa kebabı. Sumaklı soğan ve sıcak lavaşla servis edilir.",
         price: 0,
         tags: ["Acısız","Izgara"],
         ingredients: [],
@@ -337,7 +337,7 @@ const MENU = [
       {
         id: "guvec-kiremittekasarlikusbasi",
         name: "Kiremitte Kaşarlı Kuşbaşı",
-        description: "Kuşbaşı et, kiremitte kaşar peyniri ve sebzelerle birlikte fırında pişirilir. Üzeri kızarmış kaşar ile sıcak servis edilir.",
+        description: "Kuşbaşı et, kiremitte kaşar peyniri ve sebzelerle fırında pişirilir. Üzeri kızarmış kaşarla sıcak servis edilen doyurucu bir tabak.",
         price: 0,
         tags: ["Etli"],
         ingredients: [],
@@ -346,7 +346,7 @@ const MENU = [
       {
         id: "guvec-kremittekasarlıkofte",
         name: "Kiremitte Kaşarlı Köfte",
-        description: "Izgara köfte, kiremitte kaşar peyniri ve domates sosuyla fırınlanır. Sıcak ve doyurucu.",
+        description: "Izgara köfte, kiremitte kaşar peyniri ve domates sosuyla fırınlanır. Sıcacık ve bol kaşarlı.",
         price: 0,
         tags: ["Etli"],
         ingredients: [],
@@ -355,7 +355,7 @@ const MENU = [
       {
         id: "guvec-kuzusis",
         name: "Güveçte Kuzu Şiş",
-        description: "Kuzu şiş, güveçte sebzelerle birlikte ağır ateşte pişirilir. Tüm aromaları içinde barındıran geleneksel lezzet.",
+        description: "Kuzu şiş, güveçte sebzelerle birlikte ağır ateşte pişirilir. Tüm aromaların buluştuğu geleneksel bir lezzet.",
         price: 0,
         tags: ["Etli"],
         ingredients: [],
@@ -373,7 +373,7 @@ const MENU = [
       {
         id: "pideler-etlikasarli",
         name: "Etli Kaşarlı Pide",
-        description: "Taş fırında ince hamur üzerine kuşbaşı et ve bol kaşar peyniri. Çıtır hamur ve eriyen kaşar ile.",
+        description: "Taş fırında ince hamur üzerine kuşbaşı et ve bol kaşar peyniri. Çıtır hamur ve eriyen kaşarın uyumu.",
         price: 0,
         tags: ["Etli"],
         ingredients: [],
@@ -382,7 +382,7 @@ const MENU = [
       {
         id: "pideler-kasarli",
         name: "Kaşarlı Pide",
-        description: "Taş fırında çıtır hamur üzerine bol kaşar peyniri. Sade ve klasik lezzet.",
+        description: "Taş fırında çıtır hamur üzerine bol kaşar peyniri. Sade, klasik ve doyurucu.",
         price: 0,
         tags: ["Vejetaryen"],
         ingredients: [],
@@ -391,7 +391,7 @@ const MENU = [
       {
         id: "pideler-kasarlisucuklu",
         name: "Kaşarlı Sucuklu Pide",
-        description: "Kaşar peyniri ve sucukla hazırlanan, taş fırında çıtır pide. Doyurucu bir tercih.",
+        description: "Kaşar peyniri ve sucukla hazırlanan taş fırın pide. Çıtır hamur, doyurucu iç harç.",
         price: 0,
         tags: ["Etli"],
         ingredients: [],
@@ -400,7 +400,7 @@ const MENU = [
       {
         id: "pideler-kiymali",
         name: "Kıymalı Pide",
-        description: "Kıymalı harç ve taze yeşillik ile hazırlanan geleneksel pide. Taş fırında çıtır.",
+        description: "Kıymalı harç ve taze yeşillikle hazırlanan geleneksel pide. Taş fırında çıtır çıtır.",
         price: 0,
         tags: ["Kıymalı"],
         ingredients: [],
@@ -409,7 +409,7 @@ const MENU = [
       {
         id: "pideler-kusabasi",
         name: "Kuşbaşı Pide",
-        description: "Kuşbaşı et ve kaşar peyniri ile taş fırında hazırlanan pide.",
+        description: "Kuşbaşı et ve kaşar peyniriyle taş fırında hazırlanan pide.",
         price: 0,
         tags: ["Etli"],
         ingredients: [],
@@ -418,7 +418,7 @@ const MENU = [
       {
         id: "pideler-kıymalıyumurtalı",
         name: "Kıymalı Yumurtalı Pide",
-        description: "Kıymalı harç ve yumurta ile hazırlanan, taş fırında çıtır pide.",
+        description: "Kıymalı harç ve yumurtayla hazırlanan taş fırın pide. Yumuşak ve doyurucu.",
         price: 0,
         tags: ["Kıymalı"],
         ingredients: [],
@@ -427,7 +427,7 @@ const MENU = [
       {
         id: "pideler-lahmacun",
         name: "Lahmacun",
-        description: "İnce hamur üzerine kıymalı harç, taş fırında çıtır çıtır pişirilir. Bol yeşillik ve limon ile.",
+        description: "İnce hamur üzerine kıymalı harç, taş fırında çıtır çıtır pişirilir. Bol yeşillik ve limonla servis edilir.",
         price: 0,
         tags: ["Kıymalı"],
         ingredients: [],
@@ -445,7 +445,7 @@ const MENU = [
       {
         id: "pideler-yumurtali",
         name: "Yumurtalı Pide",
-        description: "Yumurta ve kaşar ile hazırlanan, taş fırında çıtır pide.",
+        description: "Yumurta ve kaşarla hazırlanan taş fırın pide. Çıtır ve lezzetli.",
         price: 0,
         tags: ["Vejetaryen"],
         ingredients: [],
@@ -463,7 +463,7 @@ const MENU = [
       {
         id: "tatlilar-katmer",
         name: "Katmer",
-        description: "İnce hamur arasına Antep fıstığı ve kaymak konularak hazırlanan, sıcak şerbetli geleneksel tatlı.",
+        description: "İnce hamur arasına Antep fıstığı ve kaymak konularak hazırlanır. Sıcak şerbetle taçlanan bu geleneksel tatlı, damakta iz bırakır.",
         price: 0,
         tags: ["Sıcak","Fıstıklı"],
         ingredients: [],
@@ -472,7 +472,7 @@ const MENU = [
       {
         id: "tatlilar-kunefe",
         name: "Künefe",
-        description: "Tel kadayıf arasına Antep peyniri, taş fırında pişirilip üzerine sıcak şerbet ve fıstık ile servis edilir.",
+        description: "Tel kadayıf arasına Antep peyniri, taş fırında pişirilir. Üzerine sıcak şerbet ve bol fıstıkla servis edilen sıcacık bir lezzet.",
         price: 0,
         tags: ["Sıcak","Fıstıklı"],
         ingredients: [],
@@ -481,7 +481,7 @@ const MENU = [
       {
         id: "tatlilar-sutlac",
         name: "Sütlaç",
-        description: "Fırında hafif karamelize edilmiş, pirinçli ve sütlü klasik tatlı.",
+        description: "Fırında hafif karamelize edilmiş, pirinçli ve sütlü klasik tatlı. Üzeri kızarmış, yumuşacık bir tatlı.",
         price: 0,
         tags: ["Sütlü"],
         ingredients: [],
