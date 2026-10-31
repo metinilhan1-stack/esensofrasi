@@ -227,7 +227,7 @@ const MENU = [
       {
         "id": "kebaplar-alinazik",
         "name": "Ali Nazik",
-        "description": "Közlenmiş patlıcan, sarımsaklı yoğurtla buluşur; üzerine közde kuzu şiş ve tereyağlı sos eklenir. Gaziantep mutfağının bu efsane lezzeti damakta iz bırakır.",
+        "description": "Közlenmiş patlıcan, sarımsaklı yoğurtla buluşur; üzerine közde et şiş ve tereyağlı sos eklenir. Gaziantep mutfağının bu efsane lezzeti damakta iz bırakır.",
         "price": 0,
         "tags": [
           "Yoğurtlu"
@@ -843,7 +843,18 @@ const MENU = [
     "order": 4,
     "icon": "utensils",
     "color": "#e66102",
-    "items": []
+    "items": [
+      {
+        "id": "item-5h7bpye",
+        "name": "",
+        "price": 0,
+        "description": "",
+        "tags": [],
+        "ingredients": [],
+        "images": [],
+        "available": true
+      }
+    ]
   }
 ];
 
