@@ -14,12 +14,19 @@
 
   let menu = load();
 
+  function byOrder(a, b) {
+    return (Number(a.order) || 0) - (Number(b.order) || 0);
+  }
+
   function load() {
+    let saved = null;
     try {
-      const saved = localStorage.getItem(KEY);
-      if (saved) return JSON.parse(saved);
+      saved = localStorage.getItem(KEY);
+      if (saved) saved = JSON.parse(saved);
     } catch (e) {}
-    return JSON.parse(JSON.stringify(MENU));
+    const data = saved || JSON.parse(JSON.stringify(MENU));
+    data.sort(byOrder);
+    return data;
   }
 
   function save() {
@@ -98,6 +105,9 @@
             <input class="nm" data-ci="${ci}" data-f="name" value="${esc(cat.name)}" placeholder="Kategori adı">
             <input class="ds" data-ci="${ci}" data-f="description" value="${esc(cat.description || "")}" placeholder="Açıklama">
           </div>
+          <label class="ord-wrap" title="Sıra numarası — küçük sayı önce gösterilir">Sıra
+            <input class="ord" type="number" data-ci="${ci}" data-f="order" value="${cat.order ?? 0}">
+          </label>
           <input class="clr" type="color" data-ci="${ci}" data-f="color" value="${cat.color || "#e66102"}">
           <div class="rbtns">
             <button class="tgl" data-action="toggle" data-ci="${ci}" title="Aç / Kapat">▸</button>
@@ -123,6 +133,7 @@
 
     if (ii === undefined) {
       if (f === "name" || f === "description" || f === "color") menu[ci][f] = t.value;
+      else if (f === "order") menu[ci][f] = parseInt(t.value, 10) || 0;
     } else {
       const item = menu[ci].items[ii];
       if (f === "name" || f === "description") item[f] = t.value;
@@ -183,7 +194,7 @@
   });
 
   addCatBtn.addEventListener("click", () => {
-    menu.push({ id: uid("cat"), name: "", description: "", icon: "utensils", color: "#e66102", items: [] });
+    menu.push({ id: uid("cat"), name: "", description: "", order: 0, icon: "utensils", color: "#e66102", items: [] });
     save(); render();
   });
 

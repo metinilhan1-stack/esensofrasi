@@ -1,4 +1,4 @@
-const CACHE = "esensofrasi-v2";
+const CACHE = "esensofrasi-v3";
 const SHELL = [
   "./",
   "./index.html",

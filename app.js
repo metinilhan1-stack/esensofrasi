@@ -38,6 +38,8 @@
   const installBtn = document.getElementById("installBtn");
 
   const productById = new Map();
+  const byOrder = (a, b) => (Number(a.order) || 0) - (Number(b.order) || 0);
+  const sortedMenu = [...MENU].sort(byOrder);
   MENU.forEach((cat) =>
     cat.items.forEach((item) => productById.set(item.id, item))
   );
@@ -137,7 +139,7 @@
 
   function renderMenu() {
     menuEl.innerHTML = "";
-    MENU.forEach((cat) => {
+    sortedMenu.forEach((cat) => {
       const availableItems = cat.items.filter((i) => i.available !== false);
       const visibleItems = availableItems.filter(matchesFilters);
       if (visibleItems.length === 0) return;
