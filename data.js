@@ -118,7 +118,8 @@ const MENU = [
         "images": [],
         "available": true
       }
-    ]
+    ],
+    "order": 1
   },
   {
     "id": "ikramlar",
@@ -184,7 +185,8 @@ const MENU = [
           "menuimg/aparatif_salata_1.jpg"
         ]
       }
-    ]
+    ],
+    "order": 6
   },
   {
     "id": "kebaplar",
@@ -501,7 +503,8 @@ const MENU = [
           "menuimg/kebap_urfadurum_1.jpg"
         ]
       }
-    ]
+    ],
+    "order": 2
   },
   {
     "id": "guvec",
@@ -554,7 +557,8 @@ const MENU = [
           "menuimg/guvec_kuzusis_5.jpg"
         ]
       }
-    ]
+    ],
+    "order": 5
   },
   {
     "id": "pideler",
@@ -683,7 +687,8 @@ const MENU = [
           "menuimg/pide_yumurtali_2.jpg"
         ]
       }
-    ]
+    ],
+    "order": 3
   },
   {
     "id": "tatlilar",
@@ -736,7 +741,8 @@ const MENU = [
           "menuimg/tatli_sutlac_2.jpg"
         ]
       }
-    ]
+    ],
+    "order": 7
   },
   {
     "id": "icecekler",
@@ -827,7 +833,17 @@ const MENU = [
           "menuimages/su.jpg"
         ]
       }
-    ]
+    ],
+    "order": 8
+  },
+  {
+    "id": "cat-chwxubn",
+    "name": "Dürümler",
+    "description": "",
+    "order": 4,
+    "icon": "utensils",
+    "color": "#e66102",
+    "items": []
   }
 ];
 
