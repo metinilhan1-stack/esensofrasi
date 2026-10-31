@@ -1,6 +1,6 @@
 /* ============================================================
    Esen Sofrası — Uygulama Mantığı
-   Accordion, modal, sepet, WhatsApp siparişi, i18n, arama/filtre
+   Accordion, modal, i18n, arama/filtre
    ============================================================ */
 
 (() => {
@@ -14,25 +14,6 @@
   const modalMeta = document.getElementById("modalMeta");
   const galleryTrack = document.getElementById("galleryTrack");
   const galleryDots = document.getElementById("galleryDots");
-  const qtyValue = document.getElementById("qtyValue");
-  const qtyMinus = document.getElementById("qtyMinus");
-  const qtyPlus = document.getElementById("qtyPlus");
-  const addToCartBtn = document.getElementById("addToCart");
-  const itemNote = document.getElementById("itemNote");
-
-  const cartBar = document.getElementById("cartBar");
-  const cartCount = document.getElementById("cartCount");
-  const cartBarTotal = document.getElementById("cartBarTotal");
-  const cartPanel = document.getElementById("cartPanel");
-  const cartOverlay = document.getElementById("cartOverlay");
-  const cartClose = document.getElementById("cartClose");
-  const cartItems = document.getElementById("cartItems");
-  const cartEmpty = document.getElementById("cartEmpty");
-  const cartTotal = document.getElementById("cartTotal");
-  const tableNo = document.getElementById("tableNo");
-  const customerNote = document.getElementById("customerNote");
-  const checkoutBtn = document.getElementById("checkoutBtn");
-  const toast = document.getElementById("toast");
   const langToggle = document.getElementById("langToggle");
   const searchInput = document.getElementById("searchInput");
   const installBtn = document.getElementById("installBtn");
@@ -45,9 +26,7 @@
   );
 
   let LANG = localStorage.getItem("lang") || "tr";
-  let cart = new Map(); // id -> { qty, note }
   let currentProduct = null;
-  let currentQty = 1;
   let currentSlide = 0;
   let searchTerm = "";
   /* ---------- i18n yardımcıları ---------- */
@@ -79,28 +58,6 @@
   }
 
   /* ---------- Yardımcılar ---------- */
-  function toastMessage(msg) {
-    toast.textContent = msg;
-    toast.classList.add("show");
-    clearTimeout(toast._t);
-    toast._t = setTimeout(() => toast.classList.remove("show"), 2200);
-  }
-
-  function cartTotalPrice() {
-    let total = 0;
-    cart.forEach((entry, id) => {
-      const item = productById.get(id);
-      if (item) total += item.price * entry.qty;
-    });
-    return total;
-  }
-
-  function cartCountValue() {
-    let count = 0;
-    cart.forEach((e) => (count += e.qty));
-    return count;
-  }
-
   function matchesFilters(item) {
     const q = searchTerm.trim().toLowerCase();
     if (q) {
@@ -195,7 +152,6 @@
       .join("");
     const name = itemName(item);
     const desc = itemDesc(item);
-    const qty = (cart.get(item.id) || { qty: 0 }).qty;
     el.innerHTML = `
       <span class="relative shrink-0">
         <img class="h-[66px] w-[66px] rounded-[14px] bg-[#eee5da] object-cover shadow-[0_2px_6px_rgba(0,0,0,0.08)]" src="${item.images[0]}" alt="${name}" loading="lazy" decoding="async" />
@@ -209,23 +165,11 @@
         ${tags ? `<span class="mt-1 flex flex-nowrap gap-1">${tags}</span>` : ""}
       </span>
       ${item.price > 0 ? `<span class="shrink-0 whitespace-nowrap text-[15px] font-bold text-accent">${formatPrice(item.price)}</span>` : ""}
-      <button class="relative flex h-[34px] w-[34px] shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-accent to-accent-dark text-[20px] leading-none text-white shadow-[0_3px_10px_rgba(230,97,2,0.35)] transition-all hover:-translate-y-px hover:scale-[1.04] hover:shadow-[0_5px_14px_rgba(230,97,2,0.5)] active:scale-[0.88]" aria-label="${name} ${t("addToOrder")}" data-add="${item.id}">+
-        <span class="${qty > 0 ? "" : "hidden "}absolute -right-1.5 -top-1.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-gold px-1 text-[11px] font-bold text-ink shadow" data-qty="${item.id}">${qty}</span>
-      </button>
     `;
 
-    el.addEventListener("click", (e) => {
-      if (e.target.closest("[data-add]")) return;
-      openProduct(item.id);
-    });
+    el.addEventListener("click", () => openProduct(item.id));
     el.addEventListener("keydown", (e) => {
       if (e.key === "Enter") openProduct(item.id);
-    });
-
-    const addBtn = el.querySelector("[data-add]");
-    addBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      quickAdd(item.id);
     });
 
     return el;
@@ -251,10 +195,7 @@
     const item = productById.get(id);
     if (!item) return;
     currentProduct = item;
-    currentQty = 1;
     currentSlide = 0;
-    qtyValue.textContent = "1";
-    if (itemNote) itemNote.value = "";
 
     modalTitle.textContent = itemName(item);
     modalPrice.textContent = formatPrice(item.price);
@@ -339,149 +280,6 @@
       goToSlide(currentSlide + (b.dataset.carousel === "next" ? 1 : -1));
     })
   );
-  qtyMinus.addEventListener("click", () => {
-    currentQty = Math.max(1, currentQty - 1);
-    qtyValue.textContent = currentQty;
-  });
-  qtyPlus.addEventListener("click", () => {
-    currentQty = Math.min(99, currentQty + 1);
-    qtyValue.textContent = currentQty;
-  });
-  addToCartBtn.addEventListener("click", () => {
-    if (!currentProduct) return;
-    const note = itemNote ? itemNote.value.trim() : "";
-    addToCart(currentProduct.id, currentQty, note);
-    closeModal();
-  });
-
-  /* ---------- Sipariş ---------- */
-  function addToCart(id, qty = 1, note = "") {
-    const entry = cart.get(id);
-    cart.set(id, {
-      qty: (entry ? entry.qty : 0) + qty,
-      note: note || (entry ? entry.note : ""),
-    });
-    renderCart();
-    toastMessage(t("added"));
-  }
-
-  function quickAdd(id) {
-    addToCart(id, 1);
-  }
-
-  function updateItemBadges() {
-    document.querySelectorAll("[data-qty]").forEach((el) => {
-      const entry = cart.get(el.dataset.qty);
-      const qty = entry ? entry.qty : 0;
-      el.textContent = qty;
-      el.classList.toggle("hidden", qty === 0);
-    });
-  }
-
-  function renderCart() {
-    cartItems.innerHTML = "";
-    const count = cartCountValue();
-    const total = cartTotalPrice();
-
-    cartBar.hidden = count === 0;
-    document.body.classList.toggle("has-cart", count > 0);
-    cartCount.textContent = count;
-    cartBarTotal.textContent = formatPrice(total);
-    cartTotal.textContent = formatPrice(total);
-    cartEmpty.style.display = count === 0 ? "flex" : "none";
-    updateItemBadges();
-
-    cart.forEach((entry, id) => {
-      const item = productById.get(id);
-      if (!item) return;
-      const name = itemName(item);
-      const row = document.createElement("div");
-      row.className = "cart-item flex items-center gap-3 px-5 py-3";
-      row.innerHTML = `
-        <img class="h-[52px] w-[52px] shrink-0 rounded-[10px] object-cover" src="${item.images[0]}" alt="${name}" />
-        <span class="min-w-0 flex-1 overflow-hidden">
-          <span class="block overflow-hidden text-ellipsis whitespace-nowrap text-[14px] font-semibold">${name}</span>
-          ${entry.note ? `<span class="block overflow-hidden text-ellipsis whitespace-nowrap text-[11px] text-muted">${entry.note}</span>` : ""}
-          <span class="mt-0.5 block text-[13px] font-semibold text-accent">${formatPrice(item.price)}</span>
-        </span>
-        <span class="flex items-center gap-1.5">
-          <button class="h-7 w-7 rounded-lg border border-line bg-[#f6efe6] text-[16px] text-accent" data-dec="${id}" aria-label="-">−</button>
-          <span class="min-w-[22px] text-center text-[14px] font-semibold">${entry.qty}</span>
-          <button class="h-7 w-7 rounded-lg border border-line bg-[#f6efe6] text-[16px] text-accent" data-inc="${id}" aria-label="+">+</button>
-        </span>
-        <button class="text-[18px] text-accent-dark" data-remove="${id}" aria-label="✕">✕</button>
-      `;
-      cartItems.appendChild(row);
-    });
-
-    cartItems.querySelectorAll("[data-inc]").forEach((b) =>
-      b.addEventListener("click", () => {
-        const e = cart.get(b.dataset.inc);
-        cart.set(b.dataset.inc, { qty: e.qty + 1, note: e.note });
-        renderCart();
-      })
-    );
-    cartItems.querySelectorAll("[data-dec]").forEach((b) =>
-      b.addEventListener("click", () => {
-        const id = b.dataset.dec;
-        const e = cart.get(id);
-        if (e.qty <= 1) cart.delete(id);
-        else cart.set(id, { qty: e.qty - 1, note: e.note });
-        renderCart();
-      })
-    );
-    cartItems.querySelectorAll("[data-remove]").forEach((b) =>
-      b.addEventListener("click", () => {
-        cart.delete(b.dataset.remove);
-        renderCart();
-      })
-    );
-  }
-
-  function openCart() {
-    cartPanel.classList.add("open");
-    cartPanel.setAttribute("aria-hidden", "false");
-    cartOverlay.hidden = false;
-    document.body.style.overflow = "hidden";
-  }
-  function closeCart() {
-    cartPanel.classList.remove("open");
-    cartPanel.setAttribute("aria-hidden", "true");
-    cartOverlay.hidden = true;
-    document.body.style.overflow = "";
-  }
-
-  cartBar.addEventListener("click", openCart);
-  cartClose.addEventListener("click", closeCart);
-  cartOverlay.addEventListener("click", closeCart);
-
-  /* ---------- WhatsApp Siparişi ---------- */
-  function buildOrderMessage() {
-    const lines = [];
-    lines.push(`*${RESTAURANT.name} — ${t("newOrder")}*`);
-    lines.push("");
-    cart.forEach((entry, id) => {
-      const item = productById.get(id);
-      const note = entry.note ? ` (${entry.note})` : "";
-      lines.push(`• ${entry.qty} x ${itemName(item)}${note} — ${formatPrice(item.price * entry.qty)}`);
-    });
-    lines.push("");
-    lines.push(`*${t("totalShort")}: ${formatPrice(cartTotalPrice())}*`);
-    if (tableNo.value.trim()) lines.push(`${t("tableNoShort")}: ${tableNo.value.trim()}`);
-    if (customerNote.value.trim()) lines.push(`${t("noteShort")}: ${customerNote.value.trim()}`);
-    return lines.join("\n");
-  }
-
-  checkoutBtn.addEventListener("click", () => {
-    if (cart.size === 0) {
-      toastMessage(t("emptyCartToast"));
-      return;
-    }
-    const msg = buildOrderMessage();
-    const url = `https://wa.me/${RESTAURANT.whatsapp}?text=${encodeURIComponent(msg)}`;
-    window.open(url, "_blank");
-  });
-
   /* ---------- Sosyal / iletişim linkleri ---------- */
   const socialUrls = {
     instagram: RESTAURANT.instagram,
@@ -512,7 +310,6 @@
     if (installBtn) installBtn.textContent = "📲 " + t("install");
     renderCampaign();
     renderMenu();
-    renderCart();
   }
 
   if (langToggle) {
@@ -533,10 +330,6 @@
   /* ---------- Başlangıç ---------- */
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-  const params = new URLSearchParams(window.location.search);
-  const qrMasa = params.get("masa") || params.get("masaNo") || params.get("table") || params.get("t");
-  if (qrMasa) tableNo.value = qrMasa;
 
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("sw.js").catch(() => {});
