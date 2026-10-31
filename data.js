@@ -73,7 +73,7 @@ const MENU = [
   {
     "id": "corba",
     "name": "Çorbalar",
-    "description": "Sıcak ve doyurucu çorbalar",
+    "description": "Sıcak ve doyurucu çorbalar, ezogelin, tavuksuyu...",
     "icon": "soup",
     "color": "#f5821f",
     "items": [
