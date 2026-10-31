@@ -242,7 +242,9 @@ const formatPrice = (price) =>
   /* GitHub ile yayınlama */
   const GH = { owner: "metinilhan1-stack", repo: "esensofrasi", branch: "main" };
 
-  function getToken() { return localStorage.getItem("gh-token") || ""; }
+  function getToken() {
+    return (window.GH_TOKEN || localStorage.getItem("gh-token") || "").trim();
+  }
 
   function askToken() {
     const t = prompt(

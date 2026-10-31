@@ -1,3 +1,7 @@
 newimages/
 node_modules/
 .DS_Store
+
+# Yerel sırlar (asla commit edilmez)
+env.js
+.env
